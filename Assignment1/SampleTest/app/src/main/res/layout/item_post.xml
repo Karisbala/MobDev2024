@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/post"
+    android:layout_width="match_parent"
+    android:layout_height="500dp">
+
+    <Button
+        android:id="@+id/post_authorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/post_like_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_authorName"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <Button
+        android:id="@+id/post_like_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Like"
+        app:layout_constraintBottom_toTopOf="@+id/post_like_count"
+        app:layout_constraintEnd_toStartOf="@+id/post_comment_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_image" />
+
+    <Button
+        android:id="@+id/post_comment_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comment"
+        app:layout_constraintBottom_toBottomOf="@+id/post_like_button"
+        app:layout_constraintEnd_toStartOf="@+id/post_share_button"
+        app:layout_constraintStart_toEndOf="@+id/post_like_button" />
+
+    <Button
+        android:id="@+id/post_share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        app:layout_constraintBottom_toBottomOf="@+id/post_comment_button"
+        app:layout_constraintStart_toEndOf="@+id/post_comment_button" />
+
+    <Button
+        android:id="@+id/post_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_image" />
+
+    <TextView
+        android:id="@+id/post_like_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/post_description"
+        app:layout_constraintStart_toStartOf="@+id/post_like_button"
+        app:layout_constraintTop_toBottomOf="@+id/post_like_button" />
+
+    <TextView
+        android:id="@+id/post_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/post_like_count" />
+</androidx.constraintlayout.widget.ConstraintLayout>
