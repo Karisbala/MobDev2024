@@ -1,0 +1,66 @@
+# Ignore Android Studio project files
+.idea/
+*.iml
+.gradle/
+local.properties
+
+# Ignore build output directories
+/build/
+*/build/
+
+# Ignore Gradle files
+/*/build/
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Kotlin-specific files
+*.kotlin_module
+
+# Ignore Android-specific files
+/captures/
+/output.json
+*.apk
+*.ap_
+
+# Ignore Proguard and R8 files
+*.mapping
+*.metadata
+*.native_libs.json
+*.sdk.dir
+
+# Ignore crashlytics and fabric files
+crashlytics.properties
+fabric.properties
+.crashlytics/
+
+# Ignore IntelliJ IDEA workspace files
+*.iws
+*.ipr
+
+# Ignore miscellaneous files
+*.orig
+*.lock
+*.tmp
+
+# Ignore files related to signing keys
+*.jks
+*.keystore
+
+# Ignore build artifacts for APKs and AABs
+*.aab
+/output/
+
+# Local configuration file for gradle properties
+gradle.properties
+
+# Ignore generated json files (from Google Services, Firebase, etc.)
+google-services.json
+app/google-services.json
+
+# Exclude node_modules if using Node.js (e.g., for React Native projects)
+node_modules/
