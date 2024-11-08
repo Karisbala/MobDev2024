@@ -58,7 +58,7 @@ fun SecondFragmentComposable(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "This is the Second Fragment (Abzal2     )",
+            text = "This is the Second Fragment (Abzal2)",
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
