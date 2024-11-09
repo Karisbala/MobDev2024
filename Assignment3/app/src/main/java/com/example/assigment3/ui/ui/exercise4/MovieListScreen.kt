@@ -1,6 +1,7 @@
 package com.example.assigment3.ui.ui.exercise4
 
-import androidx.compose.foundation.layout.Column
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,33 +14,38 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun MovieList(movies: Array<String>) {
+    val context = LocalContext.current
+
     LazyColumn(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         items(movies) { movie ->
-            MovieItem(movie = movie)
+            MovieItem(movie = movie) {
+                Toast.makeText(context, "Clicked on: $movie", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
 
 @Composable
-fun MovieItem(movie: String) {
+fun MovieItem(movie: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(vertical = 8.dp)
+            .clickable { onClick() },
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation()
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = movie,
-                style = MaterialTheme.typography.bodySmall,
-                fontWeight = FontWeight.Bold
-            )
-        }
+        Text(
+            text = movie,
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(16.dp)
+        )
     }
 }
