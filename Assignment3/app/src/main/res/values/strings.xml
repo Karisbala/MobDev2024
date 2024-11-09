@@ -1,3 +1,65 @@
 <resources>
     <string name="app_name">Assigment3</string>
+    <string-array name="movie_list">
+        <item>Godzilla vs. Kong</item>
+        <item>Devoto, la invasión silenciosa</item>
+        <item>Fixed</item>
+        <item>Tóxico</item>
+        <item>Assassin 33 A.D.</item>
+        <item>Chaco</item>
+        <item>Legionnaire\'s Trail</item>
+        <item>Dory\'s Reef Cam</item>
+        <item>100% Wolf</item>
+        <item>Яга. Кошмар тёмного леса</item>
+        <item>Batman: Soul of the Dragon</item>
+        <item>Finding \'Ohana</item>
+        <item>Host</item>
+        <item>Black Water: Abyss</item>
+        <item>The Doorman</item>
+        <item>Skylines</item>
+        <item>사냥의 시간</item>
+        <item>Sputnik</item>
+        <item>Palmer</item>
+        <item>急先锋</item>
+        <item>백두산</item>
+        <item>Dragonheart: Vengeance</item>
+        <item>Alone</item>
+        <item>Breach</item>
+        <item>La Terre et le Sang</item>
+        <item>Bajocero</item>
+        <item>The Little Things</item>
+        <item>W lesie dziś nie zaśnie nikt</item>
+        <item>The Tax Collector</item>
+        <item>The Rental</item>
+        <item>We Can Be Heroes</item>
+        <item>Miraculous World: New York, United HeroeZ</item>
+        <item>The Vast of Night</item>
+        <item>Honest Thief</item>
+        <item>僕のヒーローアカデミア THE MOVIE ヒーローズ：ライジング</item>
+        <item>Outside the Wire</item>
+        <item>Mortal Kombat Legends: Scorpion\'s Revenge</item>
+        <item>Code 8</item>
+        <item>Ava</item>
+        <item>The Croods: A New Age</item>
+        <item>The New Mutants</item>
+        <item>Greenland</item>
+        <item>Underwater</item>
+        <item>The SpongeBob Movie: Sponge on the Run</item>
+        <item>6 Underground</item>
+        <item>Terminator: Dark Fate</item>
+        <item>Wonder Woman 1984</item>
+        <item>Extraction</item>
+        <item>Godzilla: King of the Monsters</item>
+        <item>Bloodshot</item>
+        <item>Tenet</item>
+        <item>Fast &amp; Furious Presents: Hobbs &amp; Shaw</item>
+        <item>Soul</item>
+        <item>Jumanji: The Next Level</item>
+        <item>Bad Boys for Life</item>
+        <item>Godzilla</item>
+        <item>Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)</item>
+        <item>Kong: Skull Island</item>
+        <item>Joker</item>
+        <item>Avengers: Infinity War</item>
+    </string-array>
 </resources>

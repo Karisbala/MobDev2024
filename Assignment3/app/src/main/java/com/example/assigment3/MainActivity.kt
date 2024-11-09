@@ -7,6 +7,7 @@ import com.example.assigment3.ui.theme.Assigment3Theme
 import com.example.assigment3.ui.ui.exercise1.BasicFragmentScreen
 import com.example.assigment3.ui.ui.exercise2.FragmentCommunicationScreen
 import com.example.assigment3.ui.ui.exercise3.FragmentTransactionsScreen
+import com.example.assigment3.ui.ui.exercise4.MovieList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +16,8 @@ class MainActivity : ComponentActivity() {
             Assigment3Theme {
                 // BasicFragmentScreen("Hello from Compose!") // Exercise 1
                 // FragmentCommunicationScreen() // Exercise 2
-                FragmentTransactionsScreen() // Exercise 3
+                // FragmentTransactionsScreen() // Exercise 3
+                MovieList(movies = resources.getStringArray(R.array.movie_list)) // Exercise 4
             }
         }
     }
