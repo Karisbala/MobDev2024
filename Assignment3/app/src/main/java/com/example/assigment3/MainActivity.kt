@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.assigment3.ui.theme.Assigment3Theme
-import com.example.assigment3.ui.ui.exercise1.BasicFragmentScreen
-import com.example.assigment3.ui.ui.exercise2.FragmentCommunicationScreen
-import com.example.assigment3.ui.ui.exercise3.FragmentTransactionsScreen
-import com.example.assigment3.ui.ui.exercise4.MovieList
+import com.example.assigment3.ui.ui.exercise456.MovieList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
