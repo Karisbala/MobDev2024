@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.example.assignment4.data.AppDatabase
 import com.example.assignment4.repository.UserRepository
+import com.example.assignment4.ui.screens.UserListScreen
+import com.example.assignment4.ui.theme.Assignment4Theme
 import com.example.assignment4.viewmodel.UserViewModel
 import com.example.assignment4.viewmodel.UserViewModelFactory
 
@@ -20,7 +22,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            Assignment4Theme {
+                UserListScreen(userViewModel = userViewModel)
+            }
         }
     }
 }
