@@ -1,11 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.example.assignment4"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.assignment4"
@@ -50,6 +51,14 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler.v250)
+
+    implementation(libs.room.ktx)
+
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
