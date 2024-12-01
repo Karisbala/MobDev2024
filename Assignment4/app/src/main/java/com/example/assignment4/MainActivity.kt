@@ -21,27 +21,27 @@ import com.example.assignment4.viewmodel.UserViewModelFactory
 class MainActivity : ComponentActivity() {
     private val apiService = ApiClient.createService(ApiService::class.java)
 
-    //private val database by lazy { AppDatabase.getDatabase(this) }
-    private val database by lazy { PostDatabase.getDatabase(this) }
+    private val database by lazy { AppDatabase.getDatabase(this) }
+    //private val database by lazy { PostDatabase.getDatabase(this) }
 
-    //private val repository by lazy { UserRepository(database.userDao()) }
-    private val repository by lazy { PostRepository(apiService, database.postDao()) }
+    private val repository by lazy { UserRepository(database.userDao()) }
+    //private val repository by lazy { PostRepository(apiService, database.postDao()) }
 
 
-//    private val userViewModel: UserViewModel by viewModels {
-//        UserViewModelFactory(repository)
-//    }
-    private val postViewModel: PostViewModel by viewModels {
-        PostViewModelFactory(repository)
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory(repository)
     }
+//    private val postViewModel: PostViewModel by viewModels {
+//        PostViewModelFactory(repository)
+//    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Assignment4Theme {
-                //UserListScreen(userViewModel = userViewModel)
-                PostListScreen(postViewModel)
+                UserListScreen(userViewModel = userViewModel)
+                //PostListScreen(postViewModel)
             }
         }
     }
