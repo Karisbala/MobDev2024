@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -11,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.example.shoppingapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -37,9 +40,27 @@ android {
     buildFeatures {
         compose = true
     }
+    hilt {
+        enableAggregatingTask = false
+    }
 }
 
 dependencies {
+    implementation(libs.datastore.preferences)
+
+    // Navigation for Compose
+    implementation(libs.navigation.compose)
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+    // Networking
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    // Hilt runtime
+    implementation(libs.hilt.android)
+    // Hilt compiler via KSP
+    ksp(libs.hilt.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
