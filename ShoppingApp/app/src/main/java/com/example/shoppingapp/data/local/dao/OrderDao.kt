@@ -20,4 +20,7 @@ interface OrderDao {
 
     @Query("SELECT * FROM OrderItems WHERE orderId = :orderId")
     suspend fun getOrderItems(orderId: String): List<OrderItemEntity>
+
+    @Query("SELECT * FROM Orders WHERE orderId = :orderId LIMIT 1")
+    suspend fun getOrderById(orderId: String): OrderEntity?
 }
