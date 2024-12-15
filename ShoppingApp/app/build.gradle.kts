@@ -46,6 +46,10 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
     implementation(libs.datastore.preferences)
 
     // Navigation for Compose
@@ -59,6 +63,7 @@ dependencies {
     implementation(libs.retrofit.gson)
     // Hilt runtime
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
     // Hilt compiler via KSP
     ksp(libs.hilt.compiler)
 
