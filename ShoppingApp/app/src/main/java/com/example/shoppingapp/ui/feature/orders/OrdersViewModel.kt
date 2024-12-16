@@ -2,6 +2,7 @@ package com.example.shoppingapp.ui.feature.orders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.shoppingapp.domain.usecase.CancelOrderUseCase
 import com.example.shoppingapp.domain.usecase.GetOrdersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,7 +12,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class OrdersViewModel @Inject constructor(
-    private val getOrdersUseCase: GetOrdersUseCase
+    private val getOrdersUseCase: GetOrdersUseCase,
+    private val cancelOrderUseCase: CancelOrderUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(OrdersState())
@@ -31,6 +33,17 @@ class OrdersViewModel @Inject constructor(
                 _state.value = OrdersState(isLoading = false, orders = orders)
             } catch (e: Exception) {
                 _state.value = OrdersState(isLoading = false, error = e.message)
+            }
+        }
+    }
+
+    fun cancelOrder(orderId: String) {
+        viewModelScope.launch {
+            try {
+                cancelOrderUseCase(orderId)
+                loadOrders()
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(error = e.message)
             }
         }
     }

@@ -4,37 +4,31 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.shoppingapp.ui.feature.MainScreen
 import com.example.shoppingapp.ui.feature.auth.login.LoginScreen
 import com.example.shoppingapp.ui.feature.auth.register.RegisterScreen
-import com.example.shoppingapp.ui.feature.products.ProductsScreen
-import com.example.shoppingapp.ui.feature.cart.CartScreen
-import com.example.shoppingapp.ui.feature.orders.OrdersScreen
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(startDestination: String = "login") {
     val navController = rememberNavController()
-    NavHost(navController, startDestination = "login") {
+    NavHost(navController, startDestination = startDestination) {
         composable("login") {
             LoginScreen(
-                onLoginSuccess = { navController.navigate("products") },
+                onLoginSuccess = { navController.navigate("main") { popUpTo("login") { inclusive = true } } },
                 onRegisterClick = { navController.navigate("register") }
             )
         }
         composable("register") {
-            RegisterScreen(onRegisterSuccess = { navController.navigate("login") })
+            RegisterScreen(onRegisterSuccess = { navController.popBackStack() })
         }
-        composable("products") {
-            ProductsScreen(
-                onCartClick = { navController.navigate("cart") }
-            )
-        }
-        composable("cart") {
-            CartScreen(
-                onOrderPlaced = { navController.navigate("orders") }
-            )
-        }
-        composable("orders") {
-            OrdersScreen()
+        // Main route hosting drawer
+        composable("main") {
+            MainScreen(onLogout = {
+                // Clear user session if any, then navigate back to login
+                navController.navigate("login") {
+                    popUpTo("main") { inclusive = true }
+                }
+            })
         }
     }
 }

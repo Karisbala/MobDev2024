@@ -59,6 +59,10 @@ class OrderRepositoryImpl @Inject constructor(
         orderEntity.toDomain(orderItems)
     }
 
+    override suspend fun cancelOrder(orderId: String) = withContext(Dispatchers.IO) {
+        orderDao.cancelOrderById(orderId)
+    }
+
     private suspend fun getProductPrice(productId: String): Double {
         val product = productDao.getProductById(productId)
         return product?.price ?: 0.0

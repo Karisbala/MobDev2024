@@ -23,4 +23,7 @@ interface OrderDao {
 
     @Query("SELECT * FROM Orders WHERE orderId = :orderId LIMIT 1")
     suspend fun getOrderById(orderId: String): OrderEntity?
+
+    @Query("UPDATE Orders SET status = 'canceled' WHERE orderId = :orderId")
+    suspend fun cancelOrderById(orderId: String): Int
 }

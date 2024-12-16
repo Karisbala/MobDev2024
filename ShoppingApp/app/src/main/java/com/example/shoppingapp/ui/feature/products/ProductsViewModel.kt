@@ -2,18 +2,20 @@ package com.example.shoppingapp.ui.feature.products
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.shoppingapp.domain.repository.ProductRepository
 import com.example.shoppingapp.domain.usecase.AddToCartUseCase
 import com.example.shoppingapp.domain.usecase.GetProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
     private val getProductsUseCase: GetProductsUseCase,
-    private val addToCartUseCase: AddToCartUseCase
+    private val addToCartUseCase: AddToCartUseCase,
+    private val productRepository: ProductRepository,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(ProductsState())
@@ -21,17 +23,23 @@ class ProductsViewModel @Inject constructor(
 
     fun handleIntent(intent: ProductsIntent) {
         when (intent) {
-            is ProductsIntent.LoadProducts -> loadProducts()
+            ProductsIntent.LoadProducts -> loadData()
             is ProductsIntent.AddToCart -> addToCart(intent.productId)
+            is ProductsIntent.ToggleCategory -> toggleCategory(intent.categoryId)
         }
     }
 
-    private fun loadProducts() {
+    private fun loadData() {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true)
             try {
                 val products = getProductsUseCase()
-                _state.value = ProductsState(isLoading = false, products = products)
+                val categories = productRepository.getCategories()
+                _state.value = _state.value.copy(
+                    isLoading = false,
+                    products = products,
+                    categories = categories
+                )
             } catch (e: Exception) {
                 _state.value = ProductsState(isLoading = false, error = e.message)
             }
@@ -41,10 +49,25 @@ class ProductsViewModel @Inject constructor(
     private fun addToCart(productId: String) {
         viewModelScope.launch {
             try {
-                addToCartUseCase("currentUserId", productId, 1) // In real scenario, fetch currentUserId from session
+                addToCartUseCase("currentUserId", productId, 1)
+                _state.value = _state.value.copy(cartAddMessage = "Item added to cart")
             } catch (e: Exception) {
-                // Possibly show a toast or some feedback
+                // handle error if needed
             }
         }
+    }
+
+    fun resetCartMessage() {
+        _state.value = _state.value.copy(cartAddMessage = null)
+    }
+
+    private fun toggleCategory(categoryId: String) {
+        val currentSelected = _state.value.selectedCategories.toMutableSet()
+        if (currentSelected.contains(categoryId)) {
+            currentSelected.remove(categoryId)
+        } else {
+            currentSelected.add(categoryId)
+        }
+        _state.value = _state.value.copy(selectedCategories = currentSelected)
     }
 }

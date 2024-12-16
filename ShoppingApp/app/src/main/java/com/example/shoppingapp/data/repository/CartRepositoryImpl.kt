@@ -57,4 +57,8 @@ class CartRepositoryImpl @Inject constructor(
         cartDao.insertCart(cartEntity)
         return cartId
     }
+
+    override suspend fun updateCartItemQuantity(userId: String, productId: String, newQuantity: Int) {
+        cartDao.updateCartItemQuantity(userId, productId, newQuantity)
+    }
 }
