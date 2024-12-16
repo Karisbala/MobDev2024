@@ -19,10 +19,8 @@ fun LoginScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(state) {
-        if (!state.isLoading && state.error == null) {
-            if (state != LoginState()) {
-                onLoginSuccess()
-            }
+        if (!state.isLoading && state.success && state.error == null) {
+            onLoginSuccess()
         }
     }
 

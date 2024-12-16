@@ -26,10 +26,10 @@ class LoginViewModel @Inject constructor(
 
     private fun login(email: String, password: String) {
         viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true, error = null)
+            _state.value = _state.value.copy(isLoading = true, error = null, success = false)
             try {
                 loginUseCase(email, password)
-                _state.value = _state.value.copy(isLoading = false)
+                _state.value = _state.value.copy(isLoading = false, success = true)
             } catch (e: Exception) {
                 _state.value = _state.value.copy(isLoading = false, error = e.message)
             }
