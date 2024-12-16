@@ -18,8 +18,8 @@ class CartViewModel @Inject constructor(
     private val getCartItemsUseCase: GetCartItemsUseCase,
     private val removeFromCartUseCase: RemoveFromCartUseCase,
     private val placeOrderUseCase: PlaceOrderUseCase,
-    private val productRepository: ProductRepository, // to fetch product details
-    private val updateCartItemQuantityUseCase: UpdateCartItemQuantityUseCase // new use case for changing quantity
+    private val productRepository: ProductRepository,
+    private val updateCartItemQuantityUseCase: UpdateCartItemQuantityUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CartState())
@@ -40,7 +40,6 @@ class CartViewModel @Inject constructor(
             _state.value = _state.value.copy(isLoading = true, orderPlaced = false)
             try {
                 val cartItems = getCartItemsUseCase("currentUserId")
-                // Fetch product details
                 val detailedItems = cartItems.map { cartItem ->
                     val product = productRepository.getProductById(cartItem.productId)
                     DetailedCartItem(
@@ -77,7 +76,6 @@ class CartViewModel @Inject constructor(
     }
 
     private fun changeQuantity(productId: String, delta: Int) {
-        // Find the current item
         val item = _state.value.items.find { it.productId == productId } ?: return
         val newQty = (item.quantity + delta).coerceAtLeast(1)
         viewModelScope.launch {

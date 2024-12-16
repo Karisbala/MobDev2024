@@ -51,8 +51,8 @@ class ProductsViewModel @Inject constructor(
             try {
                 addToCartUseCase("currentUserId", productId, 1)
                 _state.value = _state.value.copy(cartAddMessage = "Item added to cart")
-            } catch (e: Exception) {
-                // handle error if needed
+            } catch (_: Exception) {
+
             }
         }
     }

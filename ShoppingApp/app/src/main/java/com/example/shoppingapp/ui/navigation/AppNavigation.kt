@@ -21,10 +21,8 @@ fun AppNavigation(startDestination: String = "login") {
         composable("register") {
             RegisterScreen(onRegisterSuccess = { navController.popBackStack() })
         }
-        // Main route hosting drawer
         composable("main") {
             MainScreen(onLogout = {
-                // Clear user session if any, then navigate back to login
                 navController.navigate("login") {
                     popUpTo("main") { inclusive = true }
                 }
